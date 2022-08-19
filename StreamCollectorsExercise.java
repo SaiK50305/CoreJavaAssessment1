@@ -10,6 +10,7 @@ public class StreamCollectorsExercise {
         li.add(new Player("jil", 162, 3759, 79, (new Country(1004, "France"))));
         li.add(new Player("Jom", 254, 5788, 132, (new Country(1005, "USA"))));
         li.add(new Player("Raj", 184, 5588, 122, (new Country(1001, "India"))));
+        li.add(new Player("Rahul", 84, 3588, 122, (new Country(1001, "India"))));
         getPlayersByCountry(li);
         getTotalPlayersByCountry(li);
         getTotalRunsByCountry(li);
@@ -18,7 +19,7 @@ public class StreamCollectorsExercise {
         getPlayerNamesStringByCountry(li);
     }
     public static void getPlayersByCountry(List<Player> li){
-        Map<Object, Object> countryNameWithPlayerName = li.stream().collect(Collectors.toMap(p1->p1.getPlayerName(),p1->p1.getCountry()));
+        Map<Object,Object> countryNameWithPlayerName = li.stream().collect(Collectors.toMap(p1->p1.getPlayerName(),p1->p1.getCountry().getCountryName()));
         System.out.println(countryNameWithPlayerName);}
     public static void getPlayerNamesByCountry(List<Player> li){
         Map<Object, Object> countryNameWithPlayerName1 = li.stream().filter(player -> player.getMatchesPlayed() > 100).collect(Collectors.toMap(p1->p1.getPlayerName(),p1->p1.getCountry()));
@@ -41,7 +42,7 @@ public class StreamCollectorsExercise {
         System.out.println(highest);
     }
     public static void getPlayerNamesStringByCountry(List<Player> p){
-        Map<Object, Object> countryNameWithPlayerName = p.stream().collect(Collectors.toMap(p1->p1.getCountry(),p1->p1.getPlayerName(), (s, a) -> s + ", " + a, LinkedHashMap::new));
+        Map<String, String> countryNameWithPlayerName = p.stream().collect(Collectors.toMap(p1->p1.getCountry().getCountryName(),p1->p1.getPlayerName(), (s, a) -> s + ", " + a, LinkedHashMap::new));
         System.out.println(countryNameWithPlayerName);
     }
 

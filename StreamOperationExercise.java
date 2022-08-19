@@ -47,7 +47,7 @@ public class StreamOperationExercise {
         List<Integer> getRuns = p.stream().filter(player -> player.getCountry().getCountryName().equals(country)).map(p1 -> p1.getRuns())
                 .collect(Collectors.toList());
         OptionalDouble average = getRuns.stream().mapToInt(x1 -> x1.intValue()).average();
-        System.out.println("AverageRuns " + (average));
+        System.out.println("AverageRuns " + (average.getAsDouble()));
     }
 
     public static void getPlayerNamesSorted(List<Player> li) {
